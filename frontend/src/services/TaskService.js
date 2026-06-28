@@ -4,11 +4,11 @@ const API_URL = "http://localhost:8080/api/tasks";
 
 class TaskService {
 
-    getTasks() {
+    getAllTasks() {
         return axios.get(API_URL);
     }
 
-    createTask(task) {
+    addTask(task) {
         return axios.post(API_URL, task);
     }
 

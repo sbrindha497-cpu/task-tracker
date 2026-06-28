@@ -1,5 +1,6 @@
 package com.tasktracker.backend.entity;
 import jakarta.persistence.*;
+import java.time.LocalDate;
 @Entity
 @Table(name = "tasks")
 public class Task {
@@ -9,13 +10,22 @@ public class Task {
     private String title;
     private String description;
     private String status;
+    private String priority;
+    private LocalDate dueDate;
+
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    private Project project;
     public Task() {
     }
-    public Task(Long id, String title, String description, String status) {
+    public Task(Long id, String title, String description, String status, String priority, LocalDate dueDate,   Project project) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.status = status;
+        this.priority = priority;
+        this.dueDate = dueDate;
+        this.project = project;
     }
     public Long getId() {
         return id;
@@ -40,5 +50,26 @@ public class Task {
     }
     public void setStatus(String status) {
         this.status = status;
+    }
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
+    }
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 }
